@@ -1,0 +1,22 @@
+{
+  "name": "Registration-Backend",
+  "version": "1.0.0",
+  "description": "Backend Server For Registration And Login",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "devStrat": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.8",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

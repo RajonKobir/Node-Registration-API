@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Form</title>
+	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="../js/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="../js/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- fontawesome css -->
+<link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+<!-- custom css -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- responsive css -->
+<link rel="stylesheet" href="../css/responsive.css">
+
+
+</head>
+<body>
+
+<!-- login form -->
+<div class="container signup_form">
+	<div id="login_form" class="well theme_border">
+		<h2 id="login_heading" class="text-center theme_color">Please Login</h2>
+		<hr>
+		<form action="javascript:;" onsubmit="loginForm(this)">
+			<input type="email" minlength="5" maxlength="40" name="email" placeholder="Email Address" class="form-control" required>
+			<div style="height: 10px;"></div>		
+			<input type="password" id="password" minlength="8" maxlength="40" name="password" placeholder="Password" class="form-control" autocomplete="off" required> 
+            <input type="checkbox" onclick="showPassword()"> Show Passwords
+			<div style="height: 20px;">
+				<p id="result" class="theme_color"></p>
+			</div>
+			<br>
+			<div class="text-center">
+				<button type="submit" id="login_button" class="btn">Login</button> 
+				<br>
+				<br>
+				<br>
+			<i class="fas fa-long-arrow-alt-left theme_color"></i>
+			<a class="theme_color" href="./register.html">Back to Registration</a>
+			<br>
+			<i class="fas fa-long-arrow-alt-left theme_color"></i>
+			<a class="theme_color" href="../../index.html">Back to Home</a>
+			</div>
+		</form>
+		<div style="height: 15px;"></div>
+		<div class="text-center" style="color: red; font-size: 15px;">
+		</div>
+	</div>
+</div>
+
+<!-- login form ends here-->
+
+
+
+
+
+<!-- footer  -->
+<footer>
+  <div class="footer_inner">
+    <div class="row footer_inner_row">
+      <div class="col-md-6 text-center footer_left">
+        <div class="social_icon2">
+          <a target="_blank" href="https://twitter.com/SoftifyD"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="https://www.facebook.com/softifydigital/"><i class="fab fa-facebook"></i></a>
+          <a target="_blank" href="https://www.google.com"><i class="fab fa-google"></i></a>
+          <a target="_blank" href="https://www.linkedin.com/company/softifydigital/"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6 text-center footer_right">
+        <span class="footer_copyright">
+          &copy; Softify Digital <br>
+          softifydigital@gmail.com
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer ends here  -->
+
+
+
+<script>
+	function loginForm(){
+
+        var email = $("input[name=email]").val();
+		var password = $("input[name=password]").val();
+
+		var settings = {
+		"url": "http://localhost:3000/users/login",
+		"method": "POST",
+		"timeout": 0,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"data": JSON.stringify({
+			email,
+			password
+		}),
+		};
+
+		$.ajax(settings).always(function (data) {
+			// on success or fail
+			if(data == 'authentication successful'){
+				alert('Logged In Successfully!');
+				window.location.assign("../../index.html");
+			}else{
+				document.getElementById('result').innerHTML = data.responseText
+				console.log(data.responseText);
+				console.log(data.status);
+			}
+			
+		});
+    }
+    
+
+    function showPassword() {
+	var x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Form</title>
+	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="../js/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="../js/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- fontawesome css -->
+<link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+<!-- custom css -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- responsive css -->
+<link rel="stylesheet" href="../css/responsive.css">
+
+
+</head>
+<body>
+
+<!-- signup form -->
+<div class="container signup_form">
+	<div id="signup_form" class="well theme_border">
+		<h2 id="signup_heading" class="text-center theme_color">Registration</h2>
+		<hr>
+			<form action="javascript:;" onsubmit="registerForm(this)">
+			<input type="text" minlength="2" maxlength="18" name="firstname" placeholder="First Name" class="form-control" required>
+			<div style="height: 10px;"></div>
+			<input type="text" minlength="2" maxlength="18" name="lastname" placeholder="Last Name" class="form-control" required>
+			<div style="height: 10px;"></div>
+			<select name="gender" class="form-control" required><option value="">Gender<option value="male">Male<option value="female">Female<option value="others">Others</select>
+			<div style="height: 10px;"></div>
+			<input type="number" minlength="5" maxlength="18" name="mobile" placeholder="Mobile" class="form-control" required>
+			<div style="height: 10px;"></div>
+			<input type="email" minlength="5" maxlength="40" name="email" placeholder="Email Address" class="form-control" required>
+			<div style="height: 10px;"></div>		
+			<input type="password" id="password" minlength="8" maxlength="40" name="password" placeholder="Password" class="form-control password" autocomplete="off" required> 
+			<div style="height: 10px;"></div>
+			<input type="password" id="password2" minlength="8" maxlength="40" name="password2" placeholder="Retype-Password" class="form-control password" autocomplete="off" required> 
+			<input type="checkbox" onclick="showPassword()"> Show Passwords
+			<div style="height: 20px;">
+				<p id="result" class="theme_color"></p>
+			</div>
+			<br>
+			<div class="text-center">
+			<button id="signup_button" type="submit" class="btn">Register</button> 
+			<br>
+			<br>
+			<i class="fas fa-long-arrow-alt-left theme_color"></i>
+			<a class="theme_color" href="./login.html">Back to Login</a>
+			<br>
+			<i class="fas fa-long-arrow-alt-left theme_color"></i>
+			<a class="theme_color" href="../../index.html">Back to Home</a>
+			</form>
+	</div>
+</div>
+
+<!-- signup form ends here-->
+
+
+
+
+
+<!-- footer  -->
+<footer>
+  <div class="footer_inner">
+    <div class="row footer_inner_row">
+      <div class="col-md-6 text-center footer_left">
+        <div class="social_icon2">
+          <a target="_blank" href="https://twitter.com/SoftifyD"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="https://www.facebook.com/softifydigital/"><i class="fab fa-facebook"></i></a>
+          <a target="_blank" href="https://www.google.com"><i class="fab fa-google"></i></a>
+          <a target="_blank" href="https://www.linkedin.com/company/softifydigital/"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6 text-center footer_right">
+        <span class="footer_copyright">
+          &copy; Softify Digital <br>
+          softifydigital@gmail.com
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer ends here  -->
+
+
+
+<script>
+	function registerForm(){
+		var firstname = $("input[name=firstname]").val();
+		var lastname = $("input[name=lastname]").val();
+		var gender = $("select[name=gender]").val();
+		var mobile = $("input[name=mobile]").val();
+		var email = $("input[name=email]").val();
+		var password = $("input[name=password]").val();
+		var password2 = $("input[name=password2]").val();
+	
+	// if passwords match
+	if(password == password2){
+
+		var settings = {
+		"url": "http://localhost:3000/users",
+		"method": "POST",
+		"timeout": 0,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"data": JSON.stringify({
+			firstname,
+			lastname,
+			gender,
+			mobile,
+			email,
+			password
+		}),
+		};
+
+		$.ajax(settings).always(function (data) {
+			// on success or fail
+			if(data == 'Signed Up Successfully'){
+				alert('Signed Up Successfully!');
+				window.location.assign("./login.html");
+			}else{
+				document.getElementById('result').innerHTML = data.responseText
+				console.log(data.responseText);
+				console.log(data.status);
+			}
+			
+		});
+
+
+	}else{  // if passwords don't match
+		alert('Passwords did not match!');
+	}
+}
+
+
+function showPassword() {
+	var x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	var x = document.getElementById("password2");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+}
+
+
+</script>
+
+</body>
+</html>

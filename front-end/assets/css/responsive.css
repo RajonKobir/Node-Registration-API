@@ -1,0 +1,67 @@
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 576px) {
+    .main_menu_nav {
+        position: inherit;
+        top: 0;
+    }
+    .main_logo {
+        font-size: 40px;
+    }
+    .social_icon {
+        left: 40%;
+    }
+    .carousel-inner img {
+        height: 300px;
+    }
+    .bullets li {
+        height: 10px;
+        width: 10px;
+    }
+    .bullets {
+        top: 50%;
+    }
+    #demo:hover .carousel-control-prev {
+        margin-left: 10px;
+    }
+    #demo:hover .carousel-control-next {
+        margin-right: 10px;
+    }
+    #demo .carousel-indicators{
+        display: inline-flex;
+        text-align: inherit;
+        right: 26% !important;
+    }
+    .nav_btn {
+        font-size: 30px;
+    }
+    .features_section {
+        margin-top: 20px;
+    }
+    .love_icon_div::before {
+        left: 20%;
+        top: 45%;
+        width: 70px;
+    }
+    .love_icon_div::after {
+        right: 20%;
+        top: 45%;
+        width: 70px;
+    }
+}
